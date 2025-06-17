@@ -10842,7 +10842,7 @@ html {
   padding-bottom: 7.5rem;
 }
 .content-section-strip-bg {
-   background-image: url('../assets/img//bg-callout.jpg');
+   background-image: url('../assets/img//bg-callout.webp');
    background-position: center center;
    background-repeat: no-repeat;
    background-size: cover;
@@ -10958,7 +10958,7 @@ html {
 
 .callout {
   padding: 15rem 0;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%), url("../assets/img/bg-callout.jpg");
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%), url("../assets/img/bg-callout.webp");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -11140,7 +11140,7 @@ footer.footer .social-link:hover {
   transform: scale(1.15);
 }
 #contact{
-  background: url("../assets/img/bg-callout.jpg");
+  background: url("../assets/img/bg-callout.webp");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
