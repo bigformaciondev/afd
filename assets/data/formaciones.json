@@ -1,0 +1,82 @@
+[
+  {
+    "titulo": "Curso de Gestión Administrativa",
+    "codigo": "ADM001",
+    "descripcion": "Curso subvencionado para desempleados.",
+    "imagen": "assets/img/portfolio-1.jpg",
+    "lugar": "Ourense",
+    "familia": "Administración",
+    "fecha_inicio": "2024-09-10",
+    "fecha_fin": "2024-11-10"
+  },
+  {
+    "titulo": "Marketing Digital",
+    "codigo": "MKT002",
+    "descripcion": "Curso intensivo de SEO y redes sociales.",
+    "imagen": "assets/img/portfolio-2.jpg",
+    "lugar": "Pontevedra",
+    "familia": "Marketing",
+    "fecha_inicio": "2024-10-15",
+    "fecha_fin": "2024-12-01"
+  },
+  {
+    "titulo": "Atención Sociosanitaria",
+    "codigo": "SOC003",
+    "descripcion": "Formación profesional para cuidados a dependientes.",
+    "imagen": "assets/img/portfolio-3.jpg",
+    "lugar": "Lugo",
+    "familia": "Sanidad",
+    "fecha_inicio": "2024-11-01",
+    "fecha_fin": "2025-01-30"
+  },
+  {
+    "titulo": "Ofimática Básica",
+    "codigo": "OFI004",
+    "descripcion": "Manejo de herramientas Office: Word, Excel y PowerPoint.",
+    "imagen": "assets/img/portfolio-4.jpg",
+    "lugar": "A Coruña",
+    "familia": "Informática",
+    "fecha_inicio": "2024-08-05",
+    "fecha_fin": "2024-09-20"
+  },
+  {
+    "titulo": "Inglés A2 para el Empleo",
+    "codigo": "IDI005",
+    "descripcion": "Curso de inglés básico orientado al entorno laboral.",
+    "imagen": "assets/img/portfolio-4.jpg",
+    "lugar": "Ourense",
+    "familia": "Idiomas",
+    "fecha_inicio": "2024-07-22",
+    "fecha_fin": "2024-09-10"
+  },
+  {
+    "titulo": "Programación Web Full Stack",
+    "codigo": "DEV006",
+    "descripcion": "HTML, CSS, JavaScript, Node.js y bases de datos.",
+    "imagen": "assets/img/portfolio-3.jpg",
+    "lugar": "Pontevedra",
+    "familia": "Informática",
+    "fecha_inicio": "2024-10-01",
+    "fecha_fin": "2025-02-15"
+  },
+  {
+    "titulo": "Gestión de Recursos Humanos",
+    "codigo": "RRHH007",
+    "descripcion": "Gestión de personal, nóminas, contratos y clima laboral.",
+    "imagen": "assets/img/portfolio-2.jpg",
+    "lugar": "Lugo",
+    "familia": "RRHH",
+    "fecha_inicio": "2024-11-10",
+    "fecha_fin": "2025-01-10"
+  },
+  {
+    "titulo": "Diseño Gráfico con Canva",
+    "codigo": "DIS008",
+    "descripcion": "Aprende a crear diseños atractivos para redes sociales.",
+    "imagen": "assets/img/portfolio-1.jpg",
+    "lugar": "A Coruña",
+    "familia": "Diseño",
+    "fecha_inicio": "2024-09-01",
+    "fecha_fin": "2024-10-15"
+  }
+]
