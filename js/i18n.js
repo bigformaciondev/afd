@@ -28,12 +28,12 @@ export function initI18n(defaultLang = "es") {
     item.addEventListener("click", (e) => {
       e.preventDefault();
       const lang = item.getAttribute("data-lang");
-      cargarIdioma(lang); // Aquí estaba el error: usabas "cambiarIdioma" en lugar de "cargarIdioma"
+      cargarIdioma(lang);
     });
   });
 
   function aplicarTraducciones() {
-    // Cambia texto dentro del elemento
+    // Texto interno
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       const key = el.getAttribute("data-i18n");
       if (translations[key]) {
@@ -41,7 +41,7 @@ export function initI18n(defaultLang = "es") {
       }
     });
 
-    // Cambia el atributo placeholder
+    // Placeholder
     document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
       const key = el.getAttribute("data-i18n-placeholder");
       if (translations[key]) {
@@ -49,7 +49,7 @@ export function initI18n(defaultLang = "es") {
       }
     });
 
-    // Opcional: cambiar title, alt, aria-label...
+    // Title, etc.
     document.querySelectorAll("[data-i18n-title]").forEach((el) => {
       const key = el.getAttribute("data-i18n-title");
       if (translations[key]) {
@@ -58,8 +58,9 @@ export function initI18n(defaultLang = "es") {
     });
   }
 
-  // Permitir cambio desde consola si se desea
+  // Exponer globalmente
   window.setLanguage = cargarIdioma;
+  window.updateI18nTexts = aplicarTraducciones;
 
   // Carga inicial
   cargarIdioma(currentLang);

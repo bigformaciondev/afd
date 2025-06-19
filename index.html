@@ -132,8 +132,8 @@
         <div class="container px-4 px-lg-5 text-center z-2" id="main-content">
             <h1 class="mb-1 mt-5" data-i18n="header.titulo">Oferta Formativa</h1>
             <div class="w-100">
-                <img class="img-fluid mb-5" src="assets/img/LogoBigFormacion.webp" alt="Logo BiGFormación" loading="lazy"
-                    width="300" height="auto" />
+                <img class="img-fluid mb-5" src="assets/img/LogoBigFormacion.webp" alt="Logo BiGFormación"
+                    loading="lazy" width="300" height="auto" />
             </div>
             <a class="btn btn-gradient btn-gradient-border py-3 px-5 my-5" href="#formaciones" data-i18n="header.cta"
                 aria-label="Ver cursos">Ver cursos</a>
@@ -146,9 +146,9 @@
             <h2 class="mb-5" id="centros-title" data-i18n="centros.titulo">¿Dónde Formamos?</h2>
             <div class="row gx-4 gx-lg-5">
                 <!-- Ourense -->
-                <div class="col-lg-3 col-md-6 mb-4 text-center centro" data-lugar="Ourense">
+                <div class="col-lg-3 col-md-6 mb-4 text-center centro" data-lugar="OURENSE">
                     <a href="#formaciones" class="d-block text-white text-decoration-none centro-link"
-                        data-lugar="Ourense" aria-label="Ver cursos en Ourense">
+                        data-lugar="OURENSE" aria-label="Ver cursos en Ourense">
                         <span
                             class="service-icon rounded-circle mx-auto d-flex justify-content-center align-items-center mb-3">
                             <img src="assets/img/icono-galicia.webp" alt="Icono Ourense"
@@ -163,9 +163,9 @@
                     </a>
                 </div>
                 <!-- Pontevedra -->
-                <div class="col-lg-3 col-md-6 mb-4 text-center centro" data-lugar="Pontevedra">
+                <div class="col-lg-3 col-md-6 mb-4 text-center centro" data-lugar="PONTEVEDRA">
                     <a href="#formaciones" class="d-block text-white text-decoration-none centro-link"
-                        data-lugar="Pontevedra" aria-label="Ver cursos en Pontevedra">
+                        data-lugar="PONTEVEDRA" aria-label="Ver cursos en Pontevedra">
                         <span
                             class="service-icon rounded-circle mx-auto d-flex justify-content-center align-items-center mb-3">
                             <img src="assets/img/icono-galicia.webp" alt="Icono Pontevedra"
@@ -180,8 +180,8 @@
                     </a>
                 </div>
                 <!-- Lugo -->
-                <div class="col-lg-3 col-md-6 mb-4 text-center centro" data-lugar="Lugo">
-                    <a href="#formaciones" class="d-block text-white text-decoration-none centro-link" data-lugar="Lugo"
+                <div class="col-lg-3 col-md-6 mb-4 text-center centro" data-lugar="LUGO">
+                    <a href="#formaciones" class="d-block text-white text-decoration-none centro-link" data-lugar="LUGO"
                         aria-label="Ver cursos en Lugo">
                         <span
                             class="service-icon rounded-circle mx-auto d-flex justify-content-center align-items-center mb-3">
@@ -195,9 +195,9 @@
                     </a>
                 </div>
                 <!-- A Coruña -->
-                <div class="col-lg-3 col-md-6 mb-4 text-center centro" data-lugar="A Coruña">
+                <div class="col-lg-3 col-md-6 mb-4 text-center centro" data-lugar="A CORUÑA">
                     <a href="#formaciones" class="d-block text-white text-decoration-none centro-link"
-                        data-lugar="A Coruña" aria-label="Ver cursos en A Coruña">
+                        data-lugar="A CORUÑA" aria-label="Ver cursos en A Coruña">
                         <span
                             class="service-icon rounded-circle mx-auto d-flex justify-content-center align-items-center mb-3">
                             <img src="assets/img/icono-galicia.webp" alt="Icono A Coruña"
@@ -230,32 +230,41 @@
                     <input type="text" id="filtro-nombre" class="form-control" placeholder="Nombre del curso"
                         data-i18n-placeholder="filtros.nombre" />
                 </div>
-                <div class="col-md-3 mb-2">
+                <div class="col-md-2 mb-2">
                     <label for="filtro-codigo" class="visually-hidden" data-i18n="filtros.codigo">Código del
                         curso</label>
                     <input type="text" id="filtro-codigo" class="form-control" placeholder="Código del curso"
                         data-i18n-placeholder="filtros.codigo" />
                 </div>
-                <div class="col-md-3 mb-2">
+
+                <div class="col-md-2 mb-2">
                     <label for="filtro-centro" class="visually-hidden" data-i18n="filtros.centro">Centro</label>
                     <select id="filtro-centro" class="form-control">
                         <option value="" data-i18n="filtros.todos">
                             Todos los centros
                         </option>
-                        <option value="Ourense" data-i18n="filtros.ourense">
+                        <option value="OURENSE" data-i18n="filtros.ourense">
                             Ourense
                         </option>
-                        <option value="Pontevedra" data-i18n="filtros.pontevedra">
+                        <option value="PONTEVEDRA" data-i18n="filtros.pontevedra">
                             Pontevedra
                         </option>
-                        <option value="Lugo" data-i18n="filtros.lugo">Lugo</option>
-                        <option value="A Coruña" data-i18n="filtros.coruna">
+                        <option value="LUGO" data-i18n="filtros.lugo">Lugo</option>
+                        <option value="A CORUÑA" data-i18n="filtros.coruna">
                             A Coruña
                         </option>
                     </select>
                 </div>
             </form>
-            <div class="row gx-0" id="formaciones-container" aria-live="polite"></div>
+            <div id="formaciones-container" class="row gx-0"></div>
+            <div id="formaciones-cargar-mas" class="text-center mt-4" style="display: none;">
+                <button id="btn-cargar-mas" class="btn btn-gradient btn-gradient-filled"
+                    data-i18n="formaciones.cargar_mas">
+                    Cargar más
+                </button>
+            </div>
+
+
         </div>
     </section>
 
@@ -367,8 +376,8 @@
             </h2>
             <a class="btn btn-gradient btn-gradient-border px-5 py-3 my-2" href="#" id="btn-abrir-contacto"
                 data-i18n="contacto.boton" aria-haspopup="dialog" aria-controls="modal-contacto">Escríbenos</a>
-            <a class="btn btn-gradient btn-gradient-filled px-5 py-3 my-2" href="https://bigformacion.com" target="_blank"
-                rel="noopener" data-i18n="contacto.boton-web">Visita nuestra web</a>
+            <a class="btn btn-gradient btn-gradient-filled px-5 py-3 my-2" href="https://bigformacion.com"
+                target="_blank" rel="noopener" data-i18n="contacto.boton-web">Visita nuestra web</a>
         </div>
     </section>
     <!-- Footer -->
@@ -464,8 +473,15 @@
                             aria-required="true" data-i18n-placeholder="modal.telefono.placeholder"
                             autocomplete="tel" />
                     </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="descripcion-usuario"
+                            data-i18n="modal.descripcion.label">Descripción adicional</label>
+                        <textarea class="form-control" id="descripcion-usuario" name="descripcion" rows="3"
+                            data-i18n-placeholder="modal.descripcion.placeholder" autocomplete="off"></textarea>
+                    </div>
+
                     <!-- Botón de enviar -->
-                    <button type="submit" class="btn btn-gradient btn-gradient-filled w-100" id="btn-enviar">
+                    <button type="submit" class="btn btn-gradient btn-gradient-filled w-100" id="btn-enviar" aria-diabled="true">
                         <span id="btn-text" data-i18n="modal.enviar">Enviar</span>
                         <span id="btn-spinner" class="spinner-border spinner-border-sm d-none" role="status"
                             aria-hidden="true"></span>
@@ -475,16 +491,32 @@
             <button class="modal-close" aria-label="Cerrar modal" onclick="cerrarModal()" tabindex="0">×</button>
         </div>
     </div>
+    <!-- Modal Notificación -->
+    <div class="modal fade" id="modal-notificacion" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content shadow">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-notificacion-titulo"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body text-center" id="modal-notificacion-mensaje"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-gradient btn-gradient-filled"
+                        data-bs-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top" aria-label="Volver arriba">
         <i class="bi bi-arrow-up"></i>
     </a>
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script type="module" src="js/main.js"></script>
-<script type="application/ld+json">
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script type="module" src="js/main.js"></script>
+    <script type="application/ld+json">
     {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -505,7 +537,7 @@
     }
     }
 </script>
-<script type="application/ld+json">
+    <script type="application/ld+json">
     {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
@@ -543,4 +575,5 @@
     }
 </script>
 </body>
+
 </html>

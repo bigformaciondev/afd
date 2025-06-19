@@ -1,4 +1,5 @@
-// modal.js
+
+
 export function initModal() {
     document.getElementById("btn-abrir-contacto").addEventListener("click", e => {
         e.preventDefault();
@@ -24,7 +25,8 @@ export function initModal() {
             document.getElementById('btn-spinner').classList.add('d-none');
             btn.disabled = false;
             cerrarModal();
-            alert(`Gracias por tu interés en: ${cursoSeleccionado}`);
+
+            mostrarNotificacion("Formulario enviado", "Gracias por tu consulta.");
         }, 2000);
     });
 
@@ -32,11 +34,19 @@ export function initModal() {
 }
 
 export function abrirModalDesdeCurso(f) {
+    const imagenesFamilias = {
+        AFD: "assets/img/familias/afd.webp",
+        ADG: "assets/img/familias/administracion.webp",
+        // ... las demás familias
+    };
+
+    const imagen = imagenesFamilias[f.familia] || "assets/img/portfolio-2.webp";
+
     mostrarModal({
         modoLibre: false,
-        titulo: f.titulo,
+        titulo: f.especialidad,
         codigo: f.codigo,
-        imagen: f.imagen,
+        imagen: imagen,
     });
 }
 
@@ -48,7 +58,13 @@ function abrirModalLibre(formaciones) {
         formaciones,
     });
 }
+export function mostrarNotificacion(titulo, mensaje) {
+  document.getElementById("modal-notificacion-titulo").textContent = titulo;
+  document.getElementById("modal-notificacion-mensaje").textContent = mensaje;
 
+  const modal = new bootstrap.Modal(document.getElementById("modal-notificacion"));
+  modal.show();
+}
 function mostrarModal({ modoLibre, titulo, codigo = "", imagen = "assets/img/portfolio-1.jpg", formaciones = [] }) {
     document.getElementById("modal-curso-titulo").textContent = titulo;
     document.getElementById("modal-curso-bg").style.backgroundImage =
@@ -57,20 +73,23 @@ function mostrarModal({ modoLibre, titulo, codigo = "", imagen = "assets/img/por
     const selector = document.getElementById("selector-curso-container");
     const camposFijos = document.getElementById("campos-fijos");
     const camposFijosCodigo = document.getElementById("campos-fijos-codigo");
+    const select = document.getElementById("selector-curso");
 
     if (modoLibre) {
         selector.style.display = "block";
         camposFijos.style.display = "none";
         camposFijosCodigo.style.display = "none";
 
-        const select = document.getElementById("selector-curso");
+        // Asignar opciones
         select.innerHTML = "";
         formaciones.forEach(f => {
             const opt = document.createElement("option");
             opt.value = f.codigo;
-            opt.textContent = `${f.titulo} (${f.lugar})`;
+            opt.textContent = `${f.especialidad} (${f.localidad})`;
             select.appendChild(opt);
         });
+
+        select.setAttribute("required", "true");
     } else {
         selector.style.display = "none";
         camposFijos.style.display = "block";
@@ -78,6 +97,8 @@ function mostrarModal({ modoLibre, titulo, codigo = "", imagen = "assets/img/por
 
         document.getElementById("modal-curso-input").value = titulo;
         document.getElementById("modal-codigo-input").value = codigo;
+
+        select.removeAttribute("required");
     }
 
     const modal = document.getElementById("modal-contacto");

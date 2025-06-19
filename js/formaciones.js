@@ -16,83 +16,131 @@ export function initFormaciones() {
     }
 
     let formaciones = [];
+    let resultadosFiltrados = [];
+    let cantidadMostrada = 12;
 
-    const equivalenciasFamilias = {
-        "Administración": "filtros.familia.administracion",
-        "Marketing": "filtros.familia.marketing",
-        "Sanidad": "filtros.familia.sanidad",
-        "Informática": "filtros.familia.informatica",
-        "Idiomas": "filtros.familia.idiomas",
-        "RRHH": "filtros.familia.rrhh",
-        "Diseño": "filtros.familia.diseno"
+    const imagenesFamilias = {
+        AFD: "assets/img/familias/afd.webp",
+        ADG: "assets/img/familias/administracion.webp",
+        AGA: "assets/img/familias/agraria.webp",
+        ARG: "assets/img/familias/artes-graficas.webp",
+        ART: "assets/img/familias/artes-artesanias.webp",
+        COM: "assets/img/familias/marketing.webp",
+        EOC: "assets/img/familias/edificacion.webp",
+        ELE: "assets/img/familias/electronica.webp",
+        ENA: "assets/img/familias/energia.webp",
+        FME: "assets/img/familias/mecanica.webp",
+        HOT: "assets/img/familias/turismo.webp",
+        IMP: "assets/img/familias/imagen-personal.webp",
+        IMS: "assets/img/familias/imagen-sonido.webp",
+        INA: "assets/img/familias/alimentaria.webp",
+        IEX: "assets/img/familias/extractivas.webp",
+        IFC: "assets/img/familias/informatica.webp",
+        IMA: "assets/img/familias/instalacion.webp",
+        MAM: "assets/img/familias/madera.webp",
+        MAP: "assets/img/familias/maritimo.webp",
+        QUI: "assets/img/familias/quimica.webp",
+        SAN: "assets/img/familias/sanidad.webp",
+        SEA: "assets/img/familias/medioambiente.webp",
+        SSC: "assets/img/familias/sociocultural.webp",
+        TCP: "assets/img/familias/textil.webp",
+        TMV: "assets/img/familias/vehiculos.webp",
+        VIC: "assets/img/familias/vidrio.webp"
     };
 
-    fetch("../assets/data/formaciones.json")
+    fetch("assets/data/formaciones_2025_2026.json")
         .then(res => res.json())
         .then(data => {
-            formaciones = data;
+            formaciones = data.AFD || [];
             prepararFiltroFamilia(formaciones, mostrarFormaciones);
-            prepararFiltroPorCentro();
+            prepararFiltroModalidad(formaciones);
+            prepararBotonCargarMas();
         })
         .catch(err => console.error("Error cargando formaciones:", err));
 
     function mostrarFormaciones() {
         const container = document.getElementById("formaciones-container");
-        const nombreEl = document.getElementById("filtro-nombre");
-        const codigoEl = document.getElementById("filtro-codigo");
-        const centroEl = document.getElementById("filtro-centro");
-        const familiaEl = document.getElementById("filtro-familia");
-        const inicioEl = document.getElementById("filtro-inicio");
-        const finEl = document.getElementById("filtro-fin");
-
-        if (!container || !nombreEl || !codigoEl || !centroEl) {
-            console.warn("Faltan elementos del DOM. No se puede mostrar formaciones.");
-            return;
-        }
+        const nombre = document.getElementById("filtro-nombre")?.value.toLowerCase() || "";
+        const codigo = document.getElementById("filtro-codigo")?.value.toLowerCase() || "";
+        const provincia = document.getElementById("filtro-centro")?.value || "";
+        const familia = document.getElementById("filtro-familia")?.value || "";
+        const modalidad = document.getElementById("filtro-modalidad")?.value || "";
 
         container.innerHTML = "";
+        cantidadMostrada = 12;
 
-        const nombre = nombreEl.value.toLowerCase();
-        const codigo = codigoEl.value.toLowerCase();
-        const centro = centroEl.value;
-        const familia = familiaEl?.value || "";
-        const fechaInicio = inicioEl?.value || "";
-        const fechaFin = finEl?.value || "";
-
-        const filtradas = formaciones.filter(f =>
-            f.titulo.toLowerCase().includes(nombre) &&
-            f.codigo.toLowerCase().includes(codigo) &&
-            (!centro || f.lugar === centro) &&
+        resultadosFiltrados = formaciones.filter(f =>
+            f.especialidad?.toLowerCase().includes(nombre) &&
+            f.codigo?.toLowerCase().includes(codigo) &&
+            (!provincia || f.provincia === provincia) &&
             (!familia || f.familia === familia) &&
-            (!fechaInicio || f.fecha_inicio >= fechaInicio) &&
-            (!fechaFin || f.fecha_fin <= fechaFin)
+            (!modalidad || f.modalidad === modalidad)
         );
 
-        if (!filtradas.length) {
-            container.innerHTML = '<p class="text-center">No hay formaciones disponibles.</p>';
+        if (!resultadosFiltrados.length) {
+            container.innerHTML = `<p class="text-center" data-i18n="formaciones.no_disponibles">No hay formaciones disponibles.</p>`;
             return;
         }
 
-        filtradas.forEach(f => {
+        renderFormaciones();
+    }
+
+    function renderFormaciones() {
+        const container = document.getElementById("formaciones-container");
+
+        const cursosAMostrar = resultadosFiltrados.slice(container.childElementCount, cantidadMostrada);
+        const delayBase = 100; // ms por tarjeta
+
+        cursosAMostrar.forEach((f, index) => {
+            const imagen = imagenesFamilias[f.familia] || "assets/img/portfolio-2.webp";
             const item = document.createElement("div");
-            item.className = "col-lg-3 col-md-6 mb-4";
+            item.className = "col-lg-3 col-md-6 mb-4 curso-animado";
+            item.style.animationDelay = `${index * delayBase}ms`;
+
             item.innerHTML = `
-                <a class="portfolio-item" href="#!" data-curso="${f.titulo}" data-codigo="${f.codigo}">
-                    <div class="caption">
-                        <div class="caption-content">
-                            <div class="h2">${f.titulo}</div>
-                            <p class="mb-0">${f.descripcion}</p>
-                        </div>
+            <a class="portfolio-item"  data-curso="${f.especialidad}" data-codigo="${f.codigo}">
+                <div class="caption">
+                    <div class="caption-content">
+                        <div class="h2">${f.especialidad}</div>
+                        <p class="mb-0">${f.modalidad} - ${f.localidad}</p>
                     </div>
-                    <img class="img-fluid" src="${f.imagen}" alt="${f.titulo}" />
-                </a>
-            `;
+                </div>
+                <img class="img-fluid" src="${imagen}" alt="${f.especialidad}" onerror="this.src='assets/img/portfolio-2.webp'" />
+            </a>
+        `;
+
             item.querySelector('.portfolio-item').addEventListener('click', () => {
                 abrirModalDesdeCurso(f);
             });
+
             container.appendChild(item);
         });
+
+        const wrapper = document.getElementById("formaciones-cargar-mas");
+        if (wrapper) {
+            wrapper.style.display = resultadosFiltrados.length > container.childElementCount ? 'block' : 'none';
+        }
     }
+
+
+    function prepararBotonCargarMas() {
+        const boton = document.getElementById("btn-cargar-mas");
+        const wrapper = document.getElementById("formaciones-cargar-mas");
+
+        if (!boton || !wrapper) {
+            console.warn("Botón o contenedor 'Cargar más' no encontrados en el DOM.");
+            return;
+        }
+
+        boton.addEventListener("click", () => {
+
+            setTimeout(() => {
+                cantidadMostrada += 12;
+                renderFormaciones();
+            }, 300); // puedes aumentar el tiempo si la animación es pesada
+        });
+    }
+
 
     function prepararFiltroFamilia(formaciones, callback) {
         const contenedor = document.querySelector("#formaciones .row.mb-4");
@@ -101,14 +149,13 @@ export function initFormaciones() {
         const select = document.createElement("select");
         select.id = "filtro-familia";
         select.className = "form-control mb-2";
-        select.innerHTML = `<option value="">Todas las familias</option>`;
+        select.innerHTML = `<option value="" data-i18n="formaciones.todas_familias">Todas las familias</option>`;
 
-        const familias = [...new Set(formaciones.map(f => f.familia))];
-
+        const familias = [...new Set(formaciones.map(f => f.familia).filter(Boolean))].sort();
         familias.forEach(fam => {
             const opcion = document.createElement("option");
             opcion.value = fam;
-            opcion.setAttribute("data-i18n", equivalenciasFamilias[fam] || fam);
+            opcion.setAttribute("data-i18n", `familias.${fam}`);
             opcion.textContent = fam;
             select.appendChild(opcion);
         });
@@ -119,26 +166,36 @@ export function initFormaciones() {
         contenedor.appendChild(columna);
 
         select.addEventListener("change", mostrarFormaciones);
-
         if (typeof callback === "function") callback();
     }
 
-    function prepararFiltroPorCentro() {
-        document.querySelectorAll(".centro[data-lugar]").forEach(el => {
-            el.style.cursor = "pointer";
-            el.addEventListener("click", () => {
-                const lugar = el.dataset.lugar;
-                const filtroCentro = document.getElementById("filtro-centro");
-                if (filtroCentro) {
-                    filtroCentro.value = lugar;
-                    mostrarFormaciones();
-                    document.getElementById("formaciones")?.scrollIntoView({ behavior: "smooth" });
-                }
-            });
+    function prepararFiltroModalidad(formaciones) {
+        const contenedor = document.querySelector("#formaciones .row.mb-4");
+        if (!contenedor) return;
+
+        const select = document.createElement("select");
+        select.id = "filtro-modalidad";
+        select.className = "form-control mb-2";
+        select.innerHTML = `<option value="" data-i18n="formaciones.todas_modalidades">Todas las modalidades</option>`;
+
+        const modalidades = [...new Set(formaciones.map(f => f.modalidad).filter(Boolean))].sort();
+        modalidades.forEach(mod => {
+            const opcion = document.createElement("option");
+            opcion.value = mod;
+            opcion.setAttribute("data-i18n", `modalidades.${mod}`);
+            opcion.textContent = mod;
+            select.appendChild(opcion);
         });
+
+        const columna = document.createElement("div");
+        columna.className = "col-md-2 mb-2";
+        columna.appendChild(select);
+        contenedor.appendChild(columna);
+
+        select.addEventListener("change", mostrarFormaciones);
     }
 
-    ["filtro-nombre", "filtro-codigo", "filtro-centro", "filtro-inicio", "filtro-fin"].forEach(id => {
+    ["filtro-nombre", "filtro-codigo", "filtro-centro"].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.addEventListener("input", mostrarFormaciones);
     });

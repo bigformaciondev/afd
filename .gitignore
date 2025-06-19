@@ -404,3 +404,27 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+# Archivos sensibles y configuraciones de entorno
+.env
+.env.*
+
+# Dependencias PHP (Composer)
+/vendor/
+
+# Archivos generados
+*.log
+*.json_backup
+*.bak
+*.old
+
+# Archivos de caché
+*.cache
+*.tmp
+*.lock
+
+# Datos generados (como JSON de formaciones)
+formaciones_*.json
+
+# Archivos del sistema (Windows/macOS)
+Thumbs.db
+.DS_Store
