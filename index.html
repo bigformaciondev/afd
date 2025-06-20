@@ -122,19 +122,19 @@
         </ul>
     </nav>
     <!-- Header -->
-    <header class="masthead position-relative overflow-hidden d-flex align-items-center" role="banner">
+    <header class="masthead position-relative overflow-hidden d-flex align-items-center" role="banner" style="min-height: 300px;">
         <!-- Video de fondo -->
-        <video autoplay muted loop playsinline class="bg-video w-100 h-100" aria-hidden="true" tabindex="-1">
+        <video autoplay muted loop playsinline class="bg-video w-100 h-100" aria-hidden="true" tabindex="-1"
+            style="object-fit: cover; min-height: 300px; min-width: 100vw;">
             <source src="assets/img/bg-video.mp4" type="video/mp4" />
             Tu navegador no admite la etiqueta de video.
         </video>
 
         <!-- Contenido centrado -->
         <div class="container px-4 px-lg-5 text-center z-2" id="main-content">
-
-            <a class="btn btn-gradient btn-gradient-filled py-4 my-5"
-                style="padding-right: 7.5rem !important;padding-left: 7.5rem !important; font-size: 2rem;"
-                href="#formaciones" data-i18n="header.cta" aria-label="Ver cursos">Ver cursos</a>
+            <a class="btn btn-gradient btn-gradient-filled py-4 my-5 d-none d-sm-inline-block"
+            style="padding-right: 7.5rem !important;padding-left: 7.5rem !important; font-size: 2rem;"
+            href="#formaciones" data-i18n="header.cta" aria-label="Ver cursos">Ver cursos</a>
         </div>
     </header>
 
@@ -482,7 +482,6 @@
             <div class="modal-content">
                 <div class="modal-header" id="modal-curso-bg">
                     <h2 class="modal-title text-white px-3" id="modal-curso-titulo" data-i18n="modal.titulo">Título del Curso</h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
                     <form id="form-contacto" autocomplete="on">
