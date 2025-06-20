@@ -52,48 +52,49 @@
 </head>
 
 <body id="page-top">
-    <!-- Skip to main content link for accessibility -->
-    <a href="#main-content" class="visually-hidden-focusable skip-link">Saltar al contenido principal</a>
 
     <!-- Language Switcher and Sidebar -->
-    <div class="d-flex align-items-center position-absolute top-0 start-0 p-3 z-3">
-        <a class="menu-toggle rounded me-3" href="#" aria-label="Abrir menú lateral" aria-controls="sidebar-wrapper"
+    <div class="d-flex align-items-center position-absolute top-0 start-0 p-3 z-3" style="gap: 1rem; z-index: 9999;">
+        <a class="menu-toggle rounded" href="#" aria-label="Abrir menú lateral" aria-controls="sidebar-wrapper"
             aria-expanded="false"><i class="bi bi-list fs-3" aria-hidden="true"></i></a>
 
-        <div class="dropdown dropdown-lang">
-            <button class="btn btn-light rounded-circle p-0 d-flex align-items-center justify-content-center"
-                id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Seleccionar idioma"
-                style="width: 36px; height: 36px; overflow: hidden">
-                <img class="img-fluid rounded-circle" id="current-flag" src="assets/img/flag-icon-spain.svg"
-                    alt="Español" style="width: 100%; height: 100%; object-fit: cover" />
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="languageDropdown" role="menu">
-                <li>
-                    <a class="dropdown-item d-flex align-items-center" href="#" data-lang="es" role="menuitem"
-                        lang="es">
-                        <img src="assets/img/flag-icon-spain.svg" alt="Español" class="rounded-circle"
-                            style="width: 24px; height: 24px; object-fit: cover" />
-                        <span class="ms-2">Español</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item d-flex align-items-center" href="#" data-lang="gl" role="menuitem"
-                        lang="gl">
-                        <img src="assets/img/flag-icon-galician.svg" alt="Galego" class="rounded-circle"
-                            style="width: 24px; height: 24px; object-fit: cover" />
-                        <span class="ms-2">Galego</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item d-flex align-items-center" href="#" data-lang="va" role="menuitem"
-                        lang="ca">
-                        <img src="assets/img/flag-icon-valencia.svg" alt="Valencià" class="rounded-circle"
-                            style="width: 24px; height: 24px; object-fit: cover" />
-                        <span class="ms-2">Valencià</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <!-- Botón idioma -->
+        <button class="btn btn-light rounded-circle p-0 d-flex align-items-center justify-content-center position-fixed"
+            id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Seleccionar idioma"
+            style="width: 36px; height: 36px; overflow: hidden; top: 1rem; left: 1rem; z-index: 1050;">
+            <img class="img-fluid rounded-circle" id="current-flag" src="assets/img/flag-icon-spain.svg" alt="Español"
+                style="width: 100%; height: 100%; object-fit: cover" />
+        </button>
+
+        <!-- Logo -->
+        <img class="img-fluid position-fixed" src="assets/img/LogoBigFormacion.webp" alt="Logo BiGFormación"
+            loading="lazy" width="200" height="auto" style="top: 1rem; left: 60px; z-index: 1040;" />
+        <ul class="dropdown-menu" aria-labelledby="languageDropdown" role="menu">
+            <li>
+                <a class="dropdown-item d-flex align-items-center" href="#" data-lang="es" role="menuitem" lang="es">
+                    <img src="assets/img/flag-icon-spain.svg" alt="Español" class="rounded-circle"
+                        style="width: 24px; height: 24px; object-fit: cover" />
+                    <span class="ms-2">Español</span>
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item d-flex align-items-center" href="#" data-lang="gl" role="menuitem" lang="gl">
+                    <img src="assets/img/flag-icon-galician.svg" alt="Galego" class="rounded-circle"
+                        style="width: 24px; height: 24px; object-fit: cover" />
+                    <span class="ms-2">Galego</span>
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item d-flex align-items-center" href="#" data-lang="va" role="menuitem" lang="ca">
+                    <img src="assets/img/flag-icon-valencia.svg" alt="Valencià" class="rounded-circle"
+                        style="width: 24px; height: 24px; object-fit: cover" />
+                    <span class="ms-2">Valencià</span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
     </div>
     <!-- Sidebar -->
     <nav id="sidebar-wrapper" aria-label="Menú lateral" tabindex="0">
@@ -130,20 +131,17 @@
 
         <!-- Contenido centrado -->
         <div class="container px-4 px-lg-5 text-center z-2" id="main-content">
-            <h1 class="mb-1 mt-5" data-i18n="header.titulo">Oferta Formativa</h1>
-            <div class="w-100">
-                <img class="img-fluid mb-5" src="assets/img/LogoBigFormacion.webp" alt="Logo BiGFormación"
-                    loading="lazy" width="300" height="auto" />
-            </div>
-            <a class="btn btn-gradient btn-gradient-border py-3 px-5 my-5" href="#formaciones" data-i18n="header.cta"
-                aria-label="Ver cursos">Ver cursos</a>
+
+            <a class="btn btn-gradient btn-gradient-filled py-4 my-5"
+                style="padding-right: 7.5rem !important;padding-left: 7.5rem !important; font-size: 2rem;"
+                href="#formaciones" data-i18n="header.cta" aria-label="Ver cursos">Ver cursos</a>
         </div>
     </header>
 
     <!-- Centros Section -->
     <section class="content-section bg-primary text-white text-center" id="centros" aria-labelledby="centros-title">
         <div class="container px-4 px-lg-5">
-            <h2 class="mb-5" id="centros-title" data-i18n="centros.titulo">¿Dónde Formamos?</h2>
+            <h1 class="mb-1 mb-5" id="centros-title" data-i18n="header.titulo">Oferta Formativa</h1>
             <div class="row gx-4 gx-lg-5">
                 <!-- Ourense -->
                 <div class="col-lg-3 col-md-6 mb-4 text-center centro" data-lugar="OURENSE">
@@ -236,26 +234,63 @@
                     <input type="text" id="filtro-codigo" class="form-control" placeholder="Código del curso"
                         data-i18n-placeholder="filtros.codigo" />
                 </div>
-
                 <div class="col-md-2 mb-2">
                     <label for="filtro-centro" class="visually-hidden" data-i18n="filtros.centro">Centro</label>
                     <select id="filtro-centro" class="form-control">
-                        <option value="" data-i18n="filtros.todos">
-                            Todos los centros
-                        </option>
-                        <option value="OURENSE" data-i18n="filtros.ourense">
-                            Ourense
-                        </option>
-                        <option value="PONTEVEDRA" data-i18n="filtros.pontevedra">
-                            Pontevedra
-                        </option>
+                        <option value="" data-i18n="filtros.todos">Todos los centros</option>
+                        <option value="OURENSE" data-i18n="filtros.ourense">Ourense</option>
+                        <option value="PONTEVEDRA" data-i18n="filtros.pontevedra">Pontevedra</option>
                         <option value="LUGO" data-i18n="filtros.lugo">Lugo</option>
-                        <option value="A CORUÑA" data-i18n="filtros.coruna">
-                            A Coruña
-                        </option>
+                        <option value="A CORUÑA" data-i18n="filtros.coruna">A Coruña</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3 mb-2">
+                    <label for="filtro-familia" class="visually-hidden" data-i18n="filtros.familia">Familia
+                        Profesional</label>
+                    <select id="filtro-familia" class="form-control selectpicker" data-live-search="true"
+                        title="Selecciona una familia">
+                        <option value="" data-i18n="formaciones.todas_familias">Todas las familias</option>
+                        <option value="AFD" data-i18n="familias.AFD">Administración y Finanzas</option>
+                        <option value="ADG" data-i18n="familias.ADG">Administración de Empresas</option>
+                        <option value="AGA" data-i18n="familias.AGA">Agraria</option>
+                        <option value="ARG" data-i18n="familias.ARG">Artes Gráficas</option>
+                        <option value="ART" data-i18n="familias.ART">Artes y Artesanías</option>
+                        <option value="COM" data-i18n="familias.COM">Marketing y Comunicación</option>
+                        <option value="EOC" data-i18n="familias.EOC">Edificación y Obra Civil</option>
+                        <option value="ELE" data-i18n="familias.ELE">Electrónica</option>
+                        <option value="ENA" data-i18n="familias.ENA">Energía</option>
+                        <option value="FME" data-i18n="familias.FME">Mecánica</option>
+                        <option value="HOT" data-i18n="familias.HOT">Hostelería y Turismo</option>
+                        <option value="IMP" data-i18n="familias.IMP">Imagen Personal</option>
+                        <option value="IMS" data-i18n="familias.IMS">Imagen y Sonido</option>
+                        <option value="INA" data-i18n="familias.INA">Industrias Alimentarias</option>
+                        <option value="IEX" data-i18n="familias.IEX">Industrias Extractivas</option>
+                        <option value="IFC" data-i18n="familias.IFC">Informática y Comunicaciones</option>
+                        <option value="IMA" data-i18n="familias.IMA">Instalación y Mantenimiento</option>
+                        <option value="MAM" data-i18n="familias.MAM">Madera, Mueble y Corcho</option>
+                        <option value="MAP" data-i18n="familias.MAP">Marítimo Pesquera</option>
+                        <option value="QUI" data-i18n="familias.QUI">Química</option>
+                        <option value="SAN" data-i18n="familias.SAN">Sanidad</option>
+                        <option value="SEA" data-i18n="familias.SEA">Medio Ambiente</option>
+                        <option value="SSC" data-i18n="familias.SSC">Servicios Socioculturales y a la Comunidad</option>
+                        <option value="TCP" data-i18n="familias.TCP">Textil, Confección y Piel</option>
+                        <option value="TMV" data-i18n="familias.TMV">Transporte y Mantenimiento de Vehículos</option>
+                        <option value="VIC" data-i18n="familias.VIC">Vidrio y Cerámica</option>
+                    </select>
+                </div>
+                <div class="col-md-2 mb-2">
+                    <label for="filtro-modalidad" class="visually-hidden"
+                        data-i18n="filtros.modalidad">Modalidad</label>
+                    <select id="filtro-modalidad" class="form-control">
+                        <option value="" data-i18n="formaciones.todas_modalidades">Todas las modalidades</option>
+                        <option value="TELEFORMACIÓN" data-i18n="modalidades.TELEFORMACIÓN">Teleformación</option>
+                        <option value="PRESENCIAL" data-i18n="modalidades.PRESENCIAL">Presencial</option>
+                        <option value="AULA VIRTUAL" data-i18n="modalidades.AULA_VIRTUAL">Aula Virtual</option>
                     </select>
                 </div>
             </form>
+
             <div id="formaciones-container" class="row gx-0"></div>
             <div id="formaciones-cargar-mas" class="text-center mt-4" style="display: none;">
                 <button id="btn-cargar-mas" class="btn btn-gradient btn-gradient-filled"
@@ -273,100 +308,111 @@
         <div class="container-fluid px-0">
             <div class="row w-100 mx-auto align-items-center">
                 <!-- Columna izquierda -->
-                <div class="col-12 col-lg-5 order-2 order-lg-1 mb-4 mb-lg-0">
+                <div class="col-12 col-lg-12 order-2 order-lg-1 mb-4 mb-lg-0">
                     <h2 class="h2 mb-5 big-title text-center" id="elegirnos-title" data-i18n="checks.title">
                         ¿Por qué elegirnos?
                     </h2>
-                    <div class="row g-4 justify-content-center">
+                    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4 justify-content-center">
                         <!-- Cada item debe tener aria-label y alt descriptivo -->
-                        <div class="col-6 col-sm-4 col-lg-3 d-flex">
+                        <div class="col d-flex">
                             <a href="#contacto" class="circle-item text-center text-decoration-none text-dark w-100"
                                 aria-label="Teleformación especializada">
-                                <img src="assets/img/BigTeleformacion.webp" alt="Teleformación especializada"
-                                    class="img-fluid" />
-                                <p class="mt-2" data-i18n="checks.teleformacion">
+                                <img src="assets/img/iconos/Teleformacion.png" alt="Teleformación especializada"
+                                    class="img-fluid mx-auto d-block p-2" />
+                                <p class="mt-5" data-i18n="checks.teleformacion">
                                     Teleformación especializada
                                 </p>
                             </a>
                         </div>
-                        <div class="col-6 col-sm-4 col-lg-3 d-flex">
+                        <div class="col d-flex">
                             <a href="#contacto" class="circle-item text-center text-decoration-none text-dark w-100"
                                 aria-label="Impulsa tu desarrollo profesional">
-                                <img src="assets/img/BigDesarrollo.webp" alt="Impulsa tu desarrollo profesional"
-                                    class="img-fluid" />
-                                <p class="mt-2" data-i18n="checks.desarrollo">
+                                <img src="assets/img/iconos/Desarrollo.png" alt="Impulsa tu desarrollo profesional"
+                                    class="img-fluid mx-auto d-block p-2" />
+                                <p class="mt-5" data-i18n="checks.desarrollo">
                                     Impulsa tu desarrollo profesional
                                 </p>
                             </a>
                         </div>
-                        <div class="col-6 col-sm-4 col-lg-3 d-flex">
+                        <div class="col d-flex">
                             <a href="#contacto" class="circle-item text-center text-decoration-none text-dark w-100"
                                 aria-label="Cursos certificados oficialmente">
-                                <img src="assets/img/BigCertificado.webp" alt="Cursos certificados oficialmente"
-                                    class="img-fluid" />
-                                <p class="mt-2" data-i18n="checks.certificado">
+                                <img src="assets/img/iconos/Certificados.png" alt="Cursos certificados oficialmente"
+                                    class="img-fluid mx-auto d-block p-2" />
+                                <p class="mt-5" data-i18n="checks.certificado">
                                     Cursos certificados oficialmente
                                 </p>
                             </a>
                         </div>
-                        <div class="col-6 col-sm-4 col-lg-3 d-flex">
+                        <div class="col d-flex">
                             <a href="#contacto" class="circle-item text-center text-decoration-none text-dark w-100"
                                 aria-label="Formación orientada a objetivos">
-                                <img src="assets/img/BigObjetivo.webp" alt="Formación orientada a objetivos"
-                                    class="img-fluid" />
-                                <p class="mt-2" data-i18n="checks.objetivo">
+                                <img src="assets/img/iconos/Objetivos.png" alt="Formación orientada a objetivos"
+                                    class="img-fluid mx-auto d-block p-2" />
+                                <p class="mt-5" data-i18n="checks.objetivo">
                                     Formación orientada a objetivos
                                 </p>
                             </a>
                         </div>
-                        <div class="col-6 col-sm-4 col-lg-3 d-flex">
+                        <div class="col d-flex">
                             <a href="#contacto" class="circle-item text-center text-decoration-none text-dark w-100"
                                 aria-label="Horarios adaptados a ti">
-                                <img src="assets/img/BigHorario.webp" alt="Horarios adaptados a ti" class="img-fluid" />
-                                <p class="mt-2" data-i18n="checks.horario">
+                                <img src="assets/img/iconos/Horarios.png" alt="Horarios adaptados a ti"
+                                    class="img-fluid mx-auto d-block p-2" />
+                                <p class="mt-5" data-i18n="checks.horario">
                                     Horarios adaptados a ti
                                 </p>
                             </a>
                         </div>
-                        <div class="col-6 col-sm-4 col-lg-3 d-flex">
+                        <div class="col d-flex">
                             <a href="#contacto" class="circle-item text-center text-decoration-none text-dark w-100"
                                 aria-label="Metodología práctica">
-                                <img src="assets/img/BigLapiz.webp" alt="Metodología práctica" class="img-fluid" />
-                                <p class="mt-2" data-i18n="checks.lapiz">
+                                <img src="assets/img/iconos/Metodologia.png" alt="Metodología práctica"
+                                    class="img-fluid mx-auto d-block p-2" />
+                                <p class="mt-5" data-i18n="checks.lapiz">
                                     Metodología práctica
                                 </p>
                             </a>
                         </div>
-                        <div class="col-6 col-sm-4 col-lg-3 d-flex">
+                        <div class="col d-flex">
                             <a href="#contacto" class="circle-item text-center text-decoration-none text-dark w-100"
                                 aria-label="Recursos y materiales incluidos">
-                                <img src="assets/img/BigMochila.webp" alt="Recursos y materiales incluidos"
-                                    class="img-fluid" />
-                                <p class="mt-2" data-i18n="checks.mochila">
+                                <img src="assets/img/iconos/Recursos.png" alt="Recursos y materiales incluidos"
+                                    class="img-fluid mx-auto d-block p-2" />
+                                <p class="mt-5" data-i18n="checks.mochila">
                                     Recursos y materiales incluidos
                                 </p>
                             </a>
                         </div>
-                        <div class="col-6 col-sm-4 col-lg-3 d-flex">
+                        <div class="col d-flex">
                             <a href="#contacto" class="circle-item text-center text-decoration-none text-dark w-100"
                                 aria-label="Inserción laboral">
-                                <img src="assets/img/BigVictoria.webp" alt="Inserción laboral" class="img-fluid" />
-                                <p class="mt-2" data-i18n="checks.regla">Inserción laboral</p>
+                                <img src="assets/img/iconos/Insercion.png" alt="Inserción laboral"
+                                    class="img-fluid mx-auto d-block p-2" />
+                                <p class="mt-5" data-i18n="checks.regla">Inserción laboral</p>
+                            </a>
+                        </div>
+                        <div class="col d-flex">
+                            <a href="#contacto" class="circle-item text-center text-decoration-none text-dark w-100"
+                                aria-label="Plataforma de teleformación">
+                                <img src="assets/img/iconos/Plataforma.png" alt="Plataforma de teleformación"
+                                    class="img-fluid mx-auto d-block p-2" />
+                                <p class="mt-5" data-i18n="checks.plataforma">
+                                    Plataforma de teleformación
+                                </p>
+                            </a>
+                        </div>
+                        <div class="col d-flex">
+                            <a href="#contacto" class="circle-item text-center text-decoration-none text-dark w-100"
+                                aria-label="App de cursos">
+                                <img src="assets/img/iconos/App.png" alt="App de cursos"
+                                    class="img-fluid mx-auto d-block p-2" />
+                                <p class="mt-5" data-i18n="checks.app">App de cursos</p>
                             </a>
                         </div>
                     </div>
                 </div>
-                <!-- Columna derecha: imagen con efecto hover -->
-                <div class="col-12 col-lg-7 order-1 order-lg-2 mb-4 mb-lg-0">
-                    <div class="hover-image-wrapper w-100">
-                        <img src="assets/img/portfolio-2.webp" alt="Alumnos en clase BiGFormación"
-                            class="img-fluid w-100 rounded-3 main-img" width="800" height="auto" />
-                        <img src="assets/img/portfolio-3.webp" alt="Formación práctica BiGFormación"
-                            class="img-fluid w-100 rounded-3 hover-img" width="800" height="auto" />
-                    </div>
-                </div>
             </div>
-        </div>
     </section>
     <!-- Contact Section-->
     <section class="content-section-strip content-section-strip-bg" id="contacto" aria-labelledby="contacto-title">
@@ -431,64 +477,73 @@
     </footer>
 
     <!-- Modal de inscripción -->
-    <div id="modal-contacto" class="modal-custom" style="display: none" role="dialog" aria-modal="true"
-        aria-labelledby="modal-curso-titulo">
-        <div class="modal-content-custom">
-            <div class="modal-header-custom" id="modal-curso-bg">
-                <h2 id="modal-curso-titulo" data-i18n="modal.titulo">
-                    Título del Curso
-                </h2>
-            </div>
-            <div class="modal-body-custom">
-                <form id="form-contacto" autocomplete="on">
-                    <!-- Datos del curso -->
-                    <div class="mb-3" id="selector-curso-container" style="display: none">
-                        <label class="form-label" for="selector-curso" data-i18n="modal.selector.label">Selecciona un
-                            curso</label>
-                        <select id="selector-curso" class="form-control" required aria-required="true"></select>
-                    </div>
-                    <div class="mb-3" id="campos-fijos">
-                        <label class="form-label" for="modal-curso-input" data-i18n="modal.curso.label">Curso</label>
-                        <input type="text" class="form-control" id="modal-curso-input" disabled aria-disabled="true" />
-                    </div>
-                    <div class="mb-3" id="campos-fijos-codigo">
-                        <label class="form-label" for="modal-codigo-input" data-i18n="modal.codigo.label">Código</label>
-                        <input type="text" class="form-control" id="modal-codigo-input" disabled aria-disabled="true" />
-                    </div>
-                    <!-- Datos del usuario -->
-                    <div class="mb-3">
-                        <label class="form-label" for="nombre-usuario" data-i18n="modal.nombre.label">Tu nombre</label>
-                        <input type="text" class="form-control" id="nombre-usuario" name="nombre" required
-                            aria-required="true" data-i18n-placeholder="modal.nombre.placeholder" autocomplete="name" />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="email-usuario" data-i18n="modal.email.label">Email</label>
-                        <input type="email" class="form-control" id="email-usuario" name="email" required
-                            aria-required="true" data-i18n-placeholder="modal.email.placeholder" autocomplete="email" />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="telefono-usuario"
-                            data-i18n="modal.telefono.label">Teléfono</label>
-                        <input type="tel" class="form-control" id="telefono-usuario" name="telefono" required
-                            aria-required="true" data-i18n-placeholder="modal.telefono.placeholder"
-                            autocomplete="tel" />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="descripcion-usuario"
-                            data-i18n="modal.descripcion.label">Descripción adicional</label>
-                        <textarea class="form-control" id="descripcion-usuario" name="descripcion" rows="3"
-                            data-i18n-placeholder="modal.descripcion.placeholder" autocomplete="off"></textarea>
-                    </div>
+    <div class="modal fade" id="modal-contacto" tabindex="-1" aria-labelledby="modal-curso-titulo" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" id="modal-curso-bg">
+                    <h2 class="modal-title text-white px-3" id="modal-curso-titulo" data-i18n="modal.titulo">Título del Curso</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-contacto" autocomplete="on">
+                        <!-- Datos del curso -->
+                        <div class="mb-3" id="selector-curso-container" style="display: none">
+                            <label class="form-label" for="selector-curso" data-i18n="modal.selector.label">Selecciona
+                                un
+                                curso</label>
+                            <select id="selector-curso" class="form-control" required aria-required="true"></select>
+                        </div>
+                        <div class="mb-3" id="campos-fijos">
+                            <label class="form-label" for="modal-curso-input"
+                                data-i18n="modal.curso.label">Curso</label>
+                            <input type="text" class="form-control" id="modal-curso-input" disabled
+                                aria-disabled="true" />
+                        </div>
+                        <div class="mb-3" id="campos-fijos-codigo">
+                            <label class="form-label" for="modal-codigo-input"
+                                data-i18n="modal.codigo.label">Código</label>
+                            <input type="text" class="form-control" id="modal-codigo-input" disabled
+                                aria-disabled="true" />
+                        </div>
+                        <!-- Datos del usuario -->
+                        <div class="mb-3">
+                            <label class="form-label" for="nombre-usuario" data-i18n="modal.nombre.label">Tu
+                                nombre</label>
+                            <input type="text" class="form-control" id="nombre-usuario" name="nombre" required
+                                aria-required="true" data-i18n-placeholder="modal.nombre.placeholder"
+                                autocomplete="name" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="email-usuario" data-i18n="modal.email.label">Email</label>
+                            <input type="email" class="form-control" id="email-usuario" name="email" required
+                                aria-required="true" data-i18n-placeholder="modal.email.placeholder"
+                                autocomplete="email" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="telefono-usuario"
+                                data-i18n="modal.telefono.label">Teléfono</label>
+                            <input type="tel" class="form-control" id="telefono-usuario" name="telefono" required
+                                aria-required="true" data-i18n-placeholder="modal.telefono.placeholder"
+                                autocomplete="tel" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="descripcion-usuario"
+                                data-i18n="modal.descripcion.label">Descripción adicional</label>
+                            <textarea class="form-control" id="descripcion-usuario" name="descripcion" rows="3"
+                                data-i18n-placeholder="modal.descripcion.placeholder" autocomplete="off"></textarea>
+                        </div>
 
-                    <!-- Botón de enviar -->
-                    <button type="submit" class="btn btn-gradient btn-gradient-filled w-100" id="btn-enviar" aria-diabled="true">
-                        <span id="btn-text" data-i18n="modal.enviar">Enviar</span>
-                        <span id="btn-spinner" class="spinner-border spinner-border-sm d-none" role="status"
-                            aria-hidden="true"></span>
-                    </button>
-                </form>
+                        <!-- Botón de enviar -->
+                        <button type="submit" class="btn btn-gradient btn-gradient-filled w-100" id="btn-enviar"
+                            aria-diabled="true">
+                            <span id="btn-text" data-i18n="modal.enviar">Enviar</span>
+                            <span id="btn-spinner" class="spinner-border spinner-border-sm d-none" role="status"
+                                aria-hidden="true"></span>
+                        </button>
+                    </form>
+                </div>
+                <button class="modal-close" aria-label="Cerrar modal" onclick="cerrarModal()" tabindex="0">×</button>
             </div>
-            <button class="modal-close" aria-label="Cerrar modal" onclick="cerrarModal()" tabindex="0">×</button>
         </div>
     </div>
     <!-- Modal Notificación -->

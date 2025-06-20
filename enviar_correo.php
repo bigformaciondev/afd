@@ -33,11 +33,32 @@ $email       = limpiarTexto($_POST['email'] ?? '');
 $telefono    = limpiarTexto($_POST['telefono'] ?? '');
 $descripcion = limpiarTexto($_POST['descripcion'] ?? '');
 
+// Honeypot: campo oculto para bots
+$honeypot = $_POST['honeypot'] ?? '';
+if ($honeypot !== '') {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => 'Error anti-spam detectado']);
+    exit;
+}
+
+// Validar código (nuevo)
+function validarCodigo($codigo) {
+    return preg_match('/^[A-Za-z0-9\-]{0,20}$/', $codigo);
+}
+
+if (!validarCodigo($codigo)) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => 'Código no válido']);
+    exit;
+}
+
+// Validar campos obligatorios
 if (!$curso || !$nombre || !$email || !$telefono) {
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => 'Faltan campos obligatorios']);
     exit;
 }
+
 if (!validarNombre($nombre)) {
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => 'Nombre no válido']);
@@ -141,6 +162,17 @@ $mensajeHTML = '
 
 $mail = new PHPMailer(true);
 
+// Validar variables entorno
+$required_env = ['SMTP_HOST','SMTP_USERNAME','SMTP_PASSWORD','SMTP_ENCRYPTION','SMTP_PORT','MAIL_FROM','MAIL_FROM_NAME','MAIL_TO_1','MAIL_TO_2'];
+foreach ($required_env as $env_var) {
+    if (empty($_ENV[$env_var])) {
+        http_response_code(500);
+        error_log("Falta variable de entorno: $env_var");
+        echo json_encode(['success' => false, 'message' => 'Error de configuración.']);
+        exit;
+    }
+}
+
 try {
     // Configuración SMTP desde .env
     $mail->isSMTP();
@@ -150,6 +182,9 @@ try {
     $mail->Password   = $_ENV['SMTP_PASSWORD'];
     $mail->SMTPSecure = $_ENV['SMTP_ENCRYPTION'];
     $mail->Port       = $_ENV['SMTP_PORT'];
+
+    // Codificación UTF-8
+    $mail->CharSet = 'UTF-8';
 
     // Remitente
     $mail->setFrom($_ENV['MAIL_FROM'], $_ENV['MAIL_FROM_NAME']);
@@ -176,5 +211,6 @@ try {
     echo json_encode(['success' => true, 'message' => 'Correo enviado correctamente']);
 } catch (Exception $e) {
     http_response_code(500);
-    echo json_encode(['success' => false, 'message' => 'Error al enviar el correo: ' . $mail->ErrorInfo]);
+    error_log("Error PHPMailer: " . $e->getMessage());
+    echo json_encode(['success' => false, 'message' => 'Error al enviar el correo.']);
 }

@@ -11217,51 +11217,55 @@ footer.footer .social-link:hover {
 }
 .circle-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 20px;
-  padding: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* un poco más ancho */
+  gap: 24px; /* margen mayor */
+  padding: 15px; /* un poco más de padding */
   max-width: 100%;
   box-sizing: border-box;
 }
+
 .circle-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   word-wrap: break-word;
+  cursor: pointer; /* más indicativo */
+  transition: transform 0.3s ease;
+}
+
+.circle-item:hover {
+  transform: translateY(-6px); /* ligero elevamiento */
 }
 
 .circle-item img {
-  width: 100px;
-  height: 100px;
+  width: 110px; /* un poco más grande */
+  height: 110px;
   max-width: 100%;
   object-fit: contain;
   margin: auto;
-}
-
-.circle-item p {
-  font-size: 14px;
-  margin-top: 0.5rem;
-  padding: 0 5px;
-}
-.circle-item img {
-    transition: transform 0.4s ease, filter 0.4s ease, box-shadow 0.3s ease;
-    border-radius: 12px;
+  border-radius: 12px;
+  transition: transform 0.4s ease, filter 0.4s ease, box-shadow 0.3s ease;
 }
 
 /* Efecto al pasar el ratón */
 .circle-item:hover img {
-    transform: scale(1.08) rotate(1deg);
-    filter: brightness(1.1) contrast(1.05);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transform: scale(1.08) rotate(1deg);
+  filter: brightness(1.1) contrast(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Efecto visual al hacer clic */
 .circle-item:active img {
-    transform: scale(0.95);
-    filter: brightness(0.95);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: scale(0.95);
+  filter: brightness(0.95);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+
+
+
+
+
 .hover-image-wrapper {
     position: relative;
     overflow: hidden;

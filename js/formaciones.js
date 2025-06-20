@@ -52,9 +52,11 @@ export function initFormaciones() {
         .then(res => res.json())
         .then(data => {
             formaciones = data.AFD || [];
-            prepararFiltroFamilia(formaciones, mostrarFormaciones);
-            prepararFiltroModalidad(formaciones);
+
             prepararBotonCargarMas();
+
+            // Mostrar formaciones inicialmente
+            mostrarFormaciones();
         })
         .catch(err => console.error("Error cargando formaciones:", err));
 
@@ -84,7 +86,7 @@ export function initFormaciones() {
 
         renderFormaciones();
     }
-
+    /*
     function renderFormaciones() {
         const container = document.getElementById("formaciones-container");
 
@@ -121,6 +123,62 @@ export function initFormaciones() {
             wrapper.style.display = resultadosFiltrados.length > container.childElementCount ? 'block' : 'none';
         }
     }
+*/
+    function renderFormaciones() {
+        const container = document.getElementById("formaciones-container");
+
+        const cursosAMostrar = resultadosFiltrados.slice(container.childElementCount, cantidadMostrada);
+        const delayBase = 100; // ms por tarjeta
+
+        cursosAMostrar.forEach((f, index) => {
+            const imagen = imagenesFamilias[f.familia] || "assets/img/portfolio-2.webp";
+            const item = document.createElement("div");
+            item.className = "col-lg-3 col-md-6 mb-4 curso-animado";
+            item.style.animationDelay = `${index * delayBase}ms`;
+
+            // Construimos el HTML con centro visible y espacio para descripción futura
+            item.innerHTML = `
+            <div class="card rounded-4 hover-scale shadow text-center h-100 me-5">
+              <div class="card-header rounded-top bg-primary p-0">
+                <img class="card-img-top rounded-top" src="${imagen}" 
+                     style="width: 100%; height: 200px; object-fit: cover;" 
+                     alt="${f.especialidad}" onerror="this.src='assets/img/portfolio-2.webp'">
+              </div>
+              <div class="card-body d-flex flex-column justify-content-start" style="height: 280px;">
+                <span class="badge bg-secondary mb-2" data-i18n="familias.${f.familia.toUpperCase()}">${f.familia}</span>
+                <h4 class="mt-2">${f.especialidad}</h4>
+                <p class="text-muted small mb-1">${f.provincia}</p> <!-- Campo centro/provincia -->
+                <p class="descripcion-futura text-truncate">
+                  <!-- Aquí la descripción futura -->
+                </p>
+              </div>
+              <div class="card-footer p-3">
+                <a href="#" class="btn btn-gradient btn-gradient-filled w-100" 
+                   aria-label="Acceder a ${f.especialidad}" data-i18n="accede">Acceder</a>
+              </div>
+            </div>
+        `;
+
+            // Evento para abrir modal con datos de la formación
+            item.querySelector("a.btn").addEventListener("click", (e) => {
+                e.preventDefault();
+                abrirModalDesdeCurso(f);
+            });
+
+            container.appendChild(item);
+        });
+
+        const wrapper = document.getElementById("formaciones-cargar-mas");
+        if (wrapper) {
+            wrapper.style.display = resultadosFiltrados.length > container.childElementCount ? "block" : "none";
+        }
+
+        // Aplicar traducciones si usas i18next (ajusta esta parte a tu motor)
+        if (window.updateI18nTexts) {
+            window.updateI18nTexts();
+        }
+    }
+
 
 
     function prepararBotonCargarMas() {
@@ -142,62 +200,16 @@ export function initFormaciones() {
     }
 
 
-    function prepararFiltroFamilia(formaciones, callback) {
-        const contenedor = document.querySelector("#formaciones .row.mb-4");
-        if (!contenedor) return;
-
-        const select = document.createElement("select");
-        select.id = "filtro-familia";
-        select.className = "form-control mb-2";
-        select.innerHTML = `<option value="" data-i18n="formaciones.todas_familias">Todas las familias</option>`;
-
-        const familias = [...new Set(formaciones.map(f => f.familia).filter(Boolean))].sort();
-        familias.forEach(fam => {
-            const opcion = document.createElement("option");
-            opcion.value = fam;
-            opcion.setAttribute("data-i18n", `familias.${fam}`);
-            opcion.textContent = fam;
-            select.appendChild(opcion);
-        });
-
-        const columna = document.createElement("div");
-        columna.className = "col-md-3 mb-2";
-        columna.appendChild(select);
-        contenedor.appendChild(columna);
-
-        select.addEventListener("change", mostrarFormaciones);
-        if (typeof callback === "function") callback();
-    }
-
-    function prepararFiltroModalidad(formaciones) {
-        const contenedor = document.querySelector("#formaciones .row.mb-4");
-        if (!contenedor) return;
-
-        const select = document.createElement("select");
-        select.id = "filtro-modalidad";
-        select.className = "form-control mb-2";
-        select.innerHTML = `<option value="" data-i18n="formaciones.todas_modalidades">Todas las modalidades</option>`;
-
-        const modalidades = [...new Set(formaciones.map(f => f.modalidad).filter(Boolean))].sort();
-        modalidades.forEach(mod => {
-            const opcion = document.createElement("option");
-            opcion.value = mod;
-            opcion.setAttribute("data-i18n", `modalidades.${mod}`);
-            opcion.textContent = mod;
-            select.appendChild(opcion);
-        });
-
-        const columna = document.createElement("div");
-        columna.className = "col-md-2 mb-2";
-        columna.appendChild(select);
-        contenedor.appendChild(columna);
-
-        select.addEventListener("change", mostrarFormaciones);
-    }
-
-    ["filtro-nombre", "filtro-codigo", "filtro-centro"].forEach(id => {
+    // Inputs de texto -> escuchan "input"
+    ["filtro-nombre", "filtro-codigo"].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.addEventListener("input", mostrarFormaciones);
+    });
+
+    // Selects -> escuchan "change"
+    ["filtro-centro", "filtro-familia", "filtro-modalidad"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener("change", mostrarFormaciones);
     });
 
     window.filtrarFormaciones = mostrarFormaciones;

@@ -4,21 +4,11 @@ export function initFormulario() {
   const form = document.getElementById('form-contacto');
   if (!form) return;
 
-  // Debug: contar listeners en consola (solo en devtools)
-  try {
-    console.log('Listeners submit en form:', getEventListeners(form).submit.length);
-  } catch { /* no disponible fuera consola */ }
-
-  // Evitar añadir doble listener
-  if (form.dataset.listenerAdded) {
-    console.warn("Listener ya añadido a form-contacto");
-    return;
-  }
+  if (form.dataset.listenerAdded) return;
   form.dataset.listenerAdded = "true";
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
-    console.log('Submit recibido');
 
     const nombre = document.getElementById('nombre-usuario')?.value.trim() || '';
     const email = document.getElementById('email-usuario')?.value.trim() || '';
@@ -28,11 +18,9 @@ export function initFormulario() {
     const codigo = document.getElementById('modal-codigo-input')?.value.trim() || '';
 
     if (!validarCampos(nombre, email, telefono)) {
-      console.log('Validación fallida, bloqueando envío');
-      return false; // detener envío
+      return; // No enviar si no es válido
     }
 
-    // Definir los datos para enviar
     const datos = new URLSearchParams({
       nombre,
       email,
@@ -57,22 +45,24 @@ export function initFormulario() {
         body: datos
       });
 
-      const textoPlano = await response.text();
       let result;
-
       try {
-        result = JSON.parse(textoPlano);
-      } catch (e) {
-        console.error("Respuesta no válida:", textoPlano);
-        throw new Error("La respuesta del servidor no es JSON válido.");
+        result = await response.json();
+      } catch {
+        mostrarNotificacion("Error", "Respuesta inválida del servidor.");
+        return;
       }
 
-      if (result.success) {
-        mostrarNotificacion("Enviado", "Tu solicitud se ha enviado correctamente.");
-        form.reset();
-        cerrarModal();
-      } else {
-        mostrarNotificacion("Error", result.message || "Ha ocurrido un error.");
+      if (!response.ok || !result.success) {
+        mostrarNotificacion("Error", result.message || "Ha ocurrido un error en el envío.");
+        return;
+      }
+
+      mostrarNotificacion("Enviado", "Tu solicitud se ha enviado correctamente.");
+
+      // Cerrar modal usando función expuesta por initModal.js
+      if (typeof window.cerrarModal === "function") {
+        window.cerrarModal();
       }
 
     } catch (error) {
