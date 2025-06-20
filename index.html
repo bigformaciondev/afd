@@ -122,21 +122,25 @@
         </ul>
     </nav>
     <!-- Header -->
-    <header class="masthead position-relative overflow-hidden d-flex align-items-center" role="banner" style="min-height: 300px;">
-        <!-- Video de fondo -->
-        <video autoplay muted loop playsinline class="bg-video w-100 h-100" aria-hidden="true" tabindex="-1"
-            style="object-fit: cover; min-height: 300px; min-width: 100vw;">
-            <source src="assets/img/bg-video.mp4" type="video/mp4" />
-            Tu navegador no admite la etiqueta de video.
-        </video>
+   <header class="masthead position-relative overflow-hidden d-flex align-items-center" role="banner" style="min-height: 300px;">
+    <!-- Video de fondo -->
+    <video autoplay muted loop playsinline class="bg-video w-100 h-100" aria-hidden="true" tabindex="-1"
+        style="object-fit: cover; min-height: 300px; min-width: 100vw;">
+        <source src="assets/img/bg-video.mp4" type="video/mp4" />
+        Tu navegador no admite la etiqueta de video.
+    </video>
 
-        <!-- Contenido centrado -->
-        <div class="container px-4 px-lg-5 text-center z-2" id="main-content">
-            <a class="btn btn-gradient btn-gradient-filled py-4 my-5 d-none d-sm-inline-block"
-            style="padding-right: 7.5rem !important;padding-left: 7.5rem !important; font-size: 2rem;"
-            href="#formaciones" data-i18n="header.cta" aria-label="Ver cursos">Ver cursos</a>
-        </div>
-    </header>
+    <!-- Contenido centrado -->
+    <div class="container px-4 px-lg-5 text-center z-2" id="main-content" style="position: relative; height: 100%;">
+        <a class="btn btn-gradient btn-gradient-filled py-4 d-none d-sm-inline-block"
+           style="padding-right: 7.5rem !important; padding-left: 7.5rem !important; font-size: 2rem; 
+                  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); margin-bottom: 1rem;"
+           href="#formaciones" data-i18n="header.cta" aria-label="Ver cursos">
+           Ver cursos
+        </a>
+    </div>
+</header>
+
 
     <!-- Centros Section -->
     <section class="content-section bg-primary text-white text-center" id="centros" aria-labelledby="centros-title">

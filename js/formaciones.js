@@ -199,7 +199,22 @@ export function initFormaciones() {
         });
     }
 
+    function initFiltroCentros() {
+        document.querySelectorAll('#centros .centro').forEach(centroDiv => {
+            centroDiv.addEventListener('click', () => {
+                const lugar = centroDiv.getAttribute('data-lugar');
+                const filtroCentro = document.getElementById('filtro-centro');
+                if (filtroCentro) {
+                    filtroCentro.value = lugar;
+                    filtroCentro.dispatchEvent(new Event('change'));
+                }
+                document.querySelectorAll('#centros .centro').forEach(c => c.classList.remove('activo'));
+                centroDiv.classList.add('activo');
+            });
+        });
+    }
 
+    initFiltroCentros();
     // Inputs de texto -> escuchan "input"
     ["filtro-nombre", "filtro-codigo"].forEach(id => {
         const el = document.getElementById(id);
